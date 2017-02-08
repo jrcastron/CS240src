@@ -1,60 +1,48 @@
 package sortingCode;
 
-import java.io.*;
-
-public class selectiveSort {
-
+public class selectiveSort extends sorting{
 	
-	public int[] iterativeSort(int[] Array, int size)throws IOException{
-		PrintWriter outFile = new PrintWriter(new FileWriter("CounterOutput.txt", false));
+	public int[] iterativeSort(int[] Array, int size){
 		int smallest = 0;
 		int index = 0;
 		for(int j = 0; j < size; j++){
 			smallest = Array[j];
 			for(int i = j; i < size; i++){
+				countCompareI++;
 				if(Array[i]<smallest){
 					smallest = Array[i];
 					index = i;
+					countMoveI++;
 				}
 			}
 			Array[index] = Array[j];
 			Array[j] = smallest;
 		}
-		
 		return Array;
 	}
 	
-	public int[] recursiveSort(int[] Array, int first, int next, int smallest, int index){
-		
-		if(next<=Array.length-1){
-			if(first==Array.length-1){
+	public int[] recursiveSort(int[] Array, int first, int last){
+		if(last<Array.length){
+			if(first == Array.length - 1){
 				return Array;
 			}
 			else{
-				if(Array[next]<smallest){
-					smallest = Array[next];
-					index = next;
-					if(next==Array.length-1){
-						Array[index] = Array[first];
-						Array[first] = smallest;
-						Array = recursiveSort(Array, first+1, first+2, Array[first+1], index);
+				countCompareR++;
+				int temp = Array[first];
+				if(Array[last]<Array[first]){
+					countMoveR++;
+					Array[first] = Array[last];
+					Array[last] = temp;
+					if(last == Array.length - 1){
+						Array = recursiveSort(Array, first+1, first+2);
 					}
-					else{
-						Array = recursiveSort(Array, first, next+1, smallest, index);
-					}
+					Array = recursiveSort(Array, first, last+1);
 				}
-				else if(next==Array.length-1){
-					if(smallest==Array[index]){
-						Array[index] = Array[first];
-						Array[first] = smallest;
-						Array = recursiveSort(Array, first+1, first+2, Array[first+1], index);
-					}
-					else{
-						Array = recursiveSort(Array, first+1, first+2, Array[first+1], index);
-					}
+				else if(last == Array.length - 1){
+					Array = recursiveSort(Array, first+1, first+2);
 				}
-				else {
-					Array = recursiveSort(Array, first, next+1, smallest, index);
+				else{
+					Array = recursiveSort(Array, first, last+1);
 				}
 			}
 		}

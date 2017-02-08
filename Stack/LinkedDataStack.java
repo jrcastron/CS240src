@@ -20,7 +20,6 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 		      while(tmp.next != null){
 		    	  tmp = tmp.next;
 		      }
-
 		      tmp.next = new Node<T>(newEntry, null);
 		   }
 	}
@@ -36,10 +35,22 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 	    @throws  EmptyStackException if the stack is empty before the operation. */
 	public T pop(){
 		if(topNode == null) throw new RuntimeException("cannot delete");
-		T top = peek();
-		assert(topNode != null);
-		topNode = topNode.getNextNode();
-		return top;
+		T last = peek();
+		if(topNode.next == null){
+			topNode = null;
+			return null;
+		   }
+		   else
+		   {
+		      Node<T> tmp = topNode;
+		      Node<T> previouse = null;
+		      while(tmp.next != null){
+		    	  previouse = tmp;
+		    	  tmp = tmp.next;
+		      }
+		      previouse.next = tmp.next;
+		   }
+		return last;
 	}
 	
 	/** Retrieves this stack's top entry.
@@ -47,7 +58,12 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 	    @throws  EmptyStackException if the stack is empty. */
 	public T peek(){
 		if(!isEmpty()){
-			return topNode.getData();
+			Node<T> tmp = topNode;
+		      while(tmp.next != null){
+		    	  tmp = tmp.next;
+		      }
+		      tmp.next = null;
+			return tmp.getData();
 		}
 		return null;
 	}

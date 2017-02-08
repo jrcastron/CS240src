@@ -7,24 +7,16 @@ public class Main {
 	private static selectiveSort ss = new selectiveSort();
 	
 	public static void main( String args[] )throws IOException{
-	
-	int sizeR = 10;
-	int sizeI = 10;
-	int countMove = 0;
-	int countCompare = 0;
-	int[] aI;
-	int[] aR;
+
 	PrintWriter outFile = new PrintWriter(new FileWriter("CounterOutput.txt", false));
 	
-	aI = MakeArray(sizeI);
-	aR = MakeArray(sizeR);
-	aI = ss.iterativeSort(aI, sizeI);
-	aR = ss.recursiveSort(aR, 0, 1, aR[0], 0);
-	System.out.println("Array after selective iterative sort");
-	DisplayArray(aI);
-	System.out.println("Array after selective recursive sort");
-	DisplayArray(aR);
+	TestSelective();
+	outFile.println("countMove recursive: " + ss.getCountMoveR());
+	outFile.println("countCompare recursive: " + ss.getCountCompareR());
+	outFile.println("countMove iterative: " + ss.getCountMoveI());
+	outFile.println("countCompare iterative: " + ss.getCountCompareI());
 
+	outFile.close();
 }
 	
 	private static int[] MakeArray(int size){
@@ -41,5 +33,23 @@ public class Main {
 			System.out.println(Array[i]);
 		}
 	}
+	
+	private static void TestSelective(){
+		int sizeR = 10;
+		int sizeI = 10;
+		int[] aI;
+		int[] aR;
+		
+		aI = MakeArray(sizeI);
+		aR = MakeArray(sizeR);
+		aI = ss.iterativeSort(aI, sizeI);
+		aR = ss.recursiveSort(aR, 0, 0);
+		System.out.println("Array after selective iterative sort");
+		DisplayArray(aI);
+		System.out.println("Array after selective recursive sort");
+		DisplayArray(aR);
+	}
+	
+	
 }
 
