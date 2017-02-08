@@ -2,10 +2,17 @@ package sortingCode;
 
 public abstract class sorting {
 	
-	int countMoveI = 0;
-	int countCompareI = 0;
-	int countMoveR = 0;
-	int countCompareR = 0;
+	int countMoveI;
+	int countCompareI;
+	int countMoveR;
+	int countCompareR;
+	
+	public sorting(){
+		countMoveI = 0;
+		countCompareI = 0;
+		countMoveR = 0;
+		countCompareR = 0;
+	}
 	
 	public int getCountMoveR(){
 		return countMoveR;

@@ -2,12 +2,12 @@ package sortingCode;
 
 public class selectiveSort extends sorting{
 	
-	public int[] iterativeSort(int[] Array, int size){
+	public int[] iterativeSort(int[] Array){
 		int smallest = 0;
 		int index = 0;
-		for(int j = 0; j < size; j++){
+		for(int j = 0; j < Array.length; j++){
 			smallest = Array[j];
-			for(int i = j; i < size; i++){
+			for(int i = j; i < Array.length; i++){
 				countCompareI++;
 				if(Array[i]<smallest){
 					smallest = Array[i];
