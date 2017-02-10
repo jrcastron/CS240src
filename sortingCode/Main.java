@@ -7,6 +7,9 @@ public class Main {
 	private static selectiveSort ss = new selectiveSort();
 	private static InsersionSort is = new InsersionSort();
 	private static ShellSort shs = new ShellSort();
+	private static MergeSort ms = new MergeSort();
+	private static QuickSort qs = new QuickSort();
+	private static RadixSort rs = new RadixSort();
 	
 	public static void main( String args[] )throws IOException{
 
@@ -32,6 +35,27 @@ public class Main {
 	outFile.println("countCompare recursive: " + shs.getCountCompareR());
 	outFile.println("countMove iterative: " + shs.getCountMoveI());
 	outFile.println("countCompare iterative: " + shs.getCountCompareI());
+	
+	TestMerge();
+	outFile.println("Shell Data:");
+	outFile.println("countMove recursive: " + ms.getCountMoveR());
+	outFile.println("countCompare recursive: " + ms.getCountCompareR());
+	outFile.println("countMove iterative: " + ms.getCountMoveI());
+	outFile.println("countCompare iterative: " + ms.getCountCompareI());
+	
+	TestQuick();
+	outFile.println("Shell Data:");
+	outFile.println("countMove recursive: " + qs.getCountMoveR());
+	outFile.println("countCompare recursive: " + qs.getCountCompareR());
+	outFile.println("countMove iterative: " + qs.getCountMoveI());
+	outFile.println("countCompare iterative: " + qs.getCountCompareI());
+	
+	TestRadix();
+	outFile.println("Shell Data:");
+	outFile.println("countMove recursive: " + rs.getCountMoveR());
+	outFile.println("countCompare recursive: " + rs.getCountCompareR());
+	outFile.println("countMove iterative: " + rs.getCountMoveI());
+	outFile.println("countCompare iterative: " + rs.getCountCompareI());
 
 	outFile.close();
 }
@@ -98,6 +122,62 @@ public class Main {
 		System.out.println("Array after Shell iterative sort");
 		DisplayArray(aI);
 		System.out.println("Array after Shell recursive sort");
+		DisplayArray(aR);
+	}
+	
+	/**
+	 * the implementation of this method uses both recursive and iterative, not
+	 *  just one or the other.
+	 */
+	private static void TestMerge(){
+//		int sizeR = 10;
+		int sizeI = 10;
+//		int[] aR;
+		int[] aI;
+		
+		aI = MakeArray(sizeI);
+//		aR = MakeArray(sizeR);
+		aI = ms.iterativeAndRecursiveSort(aI, 0, sizeI-1);
+//		aR = ms.recursiveSort(aR, 0, sizeR-1);
+		System.out.println("Array after merge iterative sort");
+		DisplayArray(aI);
+//		System.out.println("Array after merge recursive sort");
+//		DisplayArray(aR);
+	}
+	
+	/**
+	 * the implementation of this method uses both recursive and iterative, not
+	 *  just one or the other.
+	 */
+	private static void TestQuick(){
+//		int sizeR = 10;
+		int sizeI = 10;
+//		int[] aR;
+		int[] aI;
+		
+		aI = MakeArray(sizeI);
+//		aR = MakeArray(sizeR);
+		aI = qs.iterativeAndRecursiveSort(aI, 0, sizeI-1);
+//		aR = qs.recursiveSort(aR, 0, sizeR-1);
+		System.out.println("Array after quick iterative sort");
+		DisplayArray(aI);
+//		System.out.println("Array after quick recursive sort");
+//		DisplayArray(aR);
+	}
+	
+	private static void TestRadix(){
+		int sizeR = 10;
+		int sizeI = 10;
+		int[] aR;
+		int[] aI;
+		
+		aI = MakeArray(sizeI);
+		aR = MakeArray(sizeR);
+		aI = rs.iterativeSort(aI);
+		aR = rs.recursiveSort(aR, 1);
+		System.out.println("Array after radix iterative sort");
+		DisplayArray(aI);
+		System.out.println("Array after radix recursive sort");
 		DisplayArray(aR);
 	}
 	

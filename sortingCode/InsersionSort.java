@@ -13,16 +13,27 @@ public class InsersionSort extends sorting{
 				Array[pointer+1] = temp;
 				countMoveI++;
 			}
-			for(int i = 0; i < pointer; i++){
-				for(int j = i; j <= pointer; j++){
+			for(int i = pointer; i >0; i--){
 					countCompareI++;
-					if(Array[j]<Array[i]){
-						temp = Array[i];
-						Array[i] = Array[j];
-						Array[j] = temp;
-						countMoveI++;
+					int j = i-1;
+					if(j>0){
+						while((Array[i]<Array[j])&&(j>0)){
+							countCompareI++;
+							temp = Array[i];
+							Array[i] = Array[j];
+							Array[j] = temp;
+							countMoveI++;
+							j--;
+						}
 					}
-				}
+					else if(j==0){
+						if(Array[i]<Array[j]){
+							temp = Array[i];
+							Array[i] = Array[j];
+							Array[j] = temp;
+							countMoveI++;
+						}
+					}
 			}
 			pointer++;
 		}
@@ -43,27 +54,38 @@ public class InsersionSort extends sorting{
 			Array[pointer+1] = temp;
 			countMoveR++;
 		}
-		if(first<pointer){
-			if(next<=pointer){
+		if(first>0){
+			countCompareR++;
+			if(next>0){
 				countCompareR++;
-				if(Array[next] < Array[first]){
+				if(Array[first] < Array[next]){
 					temp = Array[first];
 					Array[first] = Array[next];
 					Array[next] = temp;
 					countMoveR++;
-					return recursiveSort(Array, first, next+1);
+					return recursiveSort(Array, first-1, next-1);
 				}
 				else{
-					return recursiveSort(Array, first, next+1);
+					pointer++;
+					return recursiveSort(Array, pointer, pointer-1);
 				}
 			}
+			else if(Array[first] < Array[next]){
+				temp = Array[first];
+				Array[first] = Array[next];
+				Array[next] = temp;
+				countMoveR++;
+				pointer++;
+				return recursiveSort(Array, pointer, pointer-1);
+			}
 			else{
-				return recursiveSort(Array, first+1, first+1);
+				pointer++;
+				return recursiveSort(Array, pointer, pointer-1);
 			}
 		}
 		else{
 			pointer++;
-			return recursiveSort(Array, 0, 0);
+			return recursiveSort(Array, pointer, pointer-1);
 		}
 	}
 
