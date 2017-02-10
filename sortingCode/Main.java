@@ -37,21 +37,21 @@ public class Main {
 	outFile.println("countCompare iterative: " + shs.getCountCompareI());
 	
 	TestMerge();
-	outFile.println("Shell Data:");
+	outFile.println("merge Data:");
 	outFile.println("countMove recursive: " + ms.getCountMoveR());
 	outFile.println("countCompare recursive: " + ms.getCountCompareR());
 	outFile.println("countMove iterative: " + ms.getCountMoveI());
 	outFile.println("countCompare iterative: " + ms.getCountCompareI());
 	
 	TestQuick();
-	outFile.println("Shell Data:");
+	outFile.println("Quick Data:");
 	outFile.println("countMove recursive: " + qs.getCountMoveR());
 	outFile.println("countCompare recursive: " + qs.getCountCompareR());
 	outFile.println("countMove iterative: " + qs.getCountMoveI());
 	outFile.println("countCompare iterative: " + qs.getCountCompareI());
 	
 	TestRadix();
-	outFile.println("Shell Data:");
+	outFile.println("radix Data:");
 	outFile.println("countMove recursive: " + rs.getCountMoveR());
 	outFile.println("countCompare recursive: " + rs.getCountCompareR());
 	outFile.println("countMove iterative: " + rs.getCountMoveI());

@@ -1,5 +1,10 @@
 package sortingCode;
-
+/**
+ * this class is used to calculate the counters for each sort and to send the
+ * values to a .txt file in main to then graph.
+ * @author Jessi
+ *
+ */
 public abstract class sorting {
 	
 	int countMoveI;
