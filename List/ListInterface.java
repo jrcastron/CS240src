@@ -83,11 +83,5 @@ public interface ListInterface<T> {
 	 */
 	public boolean isEmpty();
 	
-	/**
-	 * gets a position on the list and returns the item there
-	 * @param place
-	 * @return
-	 */
-	public T getItem(int place);
 
 }
