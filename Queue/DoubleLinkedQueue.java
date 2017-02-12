@@ -2,7 +2,7 @@ package Queue;
 
 import Stack.Node;
 
-public class DoubleLinkedQueue<T> {
+public class DoubleLinkedQueue<T> implements QueueInterface<T>{
 	private Node<T> back;
 	private Node<T> free;
 	private int size;

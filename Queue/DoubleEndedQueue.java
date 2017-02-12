@@ -2,24 +2,24 @@ package Queue;
 
 import Stack.Node;
 
-public class SingleLinkedQueue<T> implements QueueInterface<T>{
-    private Node<T> front;
-    private Node<T> back;
-    
-    public void SingleLinkedQueue(){
-    	front = null;
-    	back = null;
-    }
+public class DoubleEndedQueue<T> implements QueueInterface<T>{
+	private DoubleLinkedNode<T> front;
+	private DoubleLinkedNode<T> back;
+	
+	public DoubleEndedQueue(){
+		front = null;
+		back = null;
+	}
 	
 	/** Adds a new entry to the back of this queue.
     @param newEntry  An object to be added. */
 	public void enqueue(T newEntry){
 		if(isEmpty()){
-			front = new Node<T>(newEntry, null);
+			front = new DoubleLinkedNode<T>(null, newEntry, front);
 			back = front;
 		}
 		else{
-			back.next = new Node<T>(newEntry, null);
+			back.next = new DoubleLinkedNode<T>(back, newEntry, null);
 			back = back.next;
 		}
 	}
@@ -28,15 +28,15 @@ public class SingleLinkedQueue<T> implements QueueInterface<T>{
 	    @return  The object at the front of the queue. 
 	    @throws  EmptyQueueException if the queue is empty before the operation. */
 	public T dequeue(){
-		T Front = null;
-		if(front!=back){
-			Front = front.getData();
+		T top = null;
+		if(!isEmpty()){
+			top = front.getData();
 			front = front.next;
 		}
 		else{
-			front = null;
+			top = null;
 		}
-		return Front;
+		return top;
 	}
 	
 	/**  Retrieves the entry at the front of this queue.
@@ -46,13 +46,20 @@ public class SingleLinkedQueue<T> implements QueueInterface<T>{
 		if(!isEmpty()){
 			return front.getData();
 		}
-		return null;
+		else{
+			return null;
+		}
 	}
 	
 	/** Detects whether this queue is empty.
 	    @return  True if the queue is empty, or false otherwise. */
 	public boolean isEmpty(){
-		return front == null;
+		if(front == null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	/** Removes all entries from this queue. */

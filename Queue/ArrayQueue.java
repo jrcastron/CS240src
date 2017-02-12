@@ -1,6 +1,6 @@
 package Queue;
 
-public class ArrayQueue<T> {
+public class ArrayQueue<T> implements QueueInterface<T>{
 	private final T[] Queue;
     private int back;
     private static final int DEFAULT_CAPACITY = 25;
