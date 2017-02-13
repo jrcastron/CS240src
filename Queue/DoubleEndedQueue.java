@@ -1,7 +1,5 @@
 package Queue;
 
-import Stack.Node;
-
 public class DoubleEndedQueue<T> implements QueueInterface<T>{
 	private DoubleLinkedNode<T> front;
 	private DoubleLinkedNode<T> back;
