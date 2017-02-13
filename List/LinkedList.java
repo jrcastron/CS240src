@@ -43,6 +43,7 @@ public class LinkedList<T> implements ListInterface<T>{
 		if(temp!=null){
 			Node<T> New = new Node<T>(newEntry, temp.next);
 			temp.next = New;
+			numItems++;
 			return true;
 		}
 		return false;
@@ -54,11 +55,11 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public T Remove(int where){
-		Node<T> temp = getNode(where-1);
+		Node<T> temp = getNode(where);
 		T removed = null;
 		if(temp!=null){
-			removed = temp.next.getData();
-			temp.next = temp.next.next;
+			removed = temp.getData();
+			Remove(removed);
 		}
 		return removed;
 	}
@@ -69,16 +70,23 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public T Remove(T item){
-		Node<T> temp = getNode(item);
 		T removed = null;
-		if(temp!=null){
-			temp = front;
-			int i = 0;
-			while(temp != item){
-				temp = temp.next;
-				i++;
+		Node<T> temp = null;
+		if(!isEmpty()){
+			if(front.getData() == item){
+				removed = item;
+				front = front.next;
+				numItems--;
 			}
-			removed = Remove(i);
+			else{
+				int i = FindItem(item);
+				if(i!=-1){
+					temp = getNode(i-1);
+					removed = temp.next.getData();
+					temp.next = temp.next.next;
+					numItems--;
+				}
+			}
 		}
 		return removed;
 	}
@@ -87,7 +95,11 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * removes all items
 	 */
 	public void clear(){
-		
+		int i = 0;
+		while(!isEmpty()){
+			Remove(i);
+			i++;
+		}
 	}
 	
 	/**
@@ -97,7 +109,15 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public T replaceItem(T newEntry, T replace){
-		
+		T removed = null;
+		if(!isEmpty()){
+			int i = FindItem(replace);
+			if(i!=-1){
+				removed = Remove(replace);
+				Add(newEntry, i);
+			}
+		}
+		return removed;
 	}
 	
 	/**
@@ -107,7 +127,12 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public T replaceItem(T newEntry, int place){
-		
+		T removed = null;
+		if(!isEmpty()){
+			removed = Remove(place);
+			Add(newEntry, place);
+		}
+		return removed;
 	}
 	
 	/**
@@ -116,14 +141,35 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public T LookAtItem(T Entry){
-		
+		T temp = null;
+		if(!isEmpty()){
+			int i = FindItem(Entry);
+			if(i>=0){
+				temp = Entry;
+			}
+		}
+		return temp;
 	}
 	
 	/**
 	 * returns all the items in the list
 	 */
 	public void LookAtAll(){
-		
+		int i = CountEntries();
+		@SuppressWarnings("unchecked")
+		T[] temp = (T[]) new Object[i];
+		Node<T> temp2 = front;
+		for(int j = 0; j < i; j++){
+			temp[j] = temp2.getData();
+			if(temp2.next!=null){
+				temp2 = temp2.next;
+			}
+		}
+		System.out.print("{");
+		for(int x = 0; x < i; x++){
+			System.out.print(" " + temp[x]);
+		}
+		System.out.println(" }");
 	}
 	
 	/**
@@ -132,7 +178,21 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public int FindItem(T Entry){
-		
+		int i = 0;
+		if(!isEmpty()){
+			Node<T> temp = front;
+			while((i<CountEntries()-1)&&(temp.getData()!=Entry)){
+				temp = temp.next;
+				i++;
+			}
+			if(temp.getData() == null){
+				i = -1;
+			}
+		}
+		else{
+			i = -1;
+		}
+		return i;
 	}
 	
 	/**
@@ -140,7 +200,7 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public int CountEntries(){
-		
+		return numItems;
 	}
 	
 	/**
@@ -148,14 +208,19 @@ public class LinkedList<T> implements ListInterface<T>{
 	 * @return
 	 */
 	public boolean isEmpty(){
-		
+		if(numItems==0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	public Node<T> getNode(int place){
 		if(!isEmpty()){
 			int i = 0;
 			Node<T> temp = front;
-			while(i<place){
+			while((i<place)&&(i<CountEntries()-1)){
 				temp = temp.next;
 				i++;
 			}
