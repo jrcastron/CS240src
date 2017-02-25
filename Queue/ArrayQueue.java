@@ -78,5 +78,9 @@ public class ArrayQueue<T> implements QueueInterface<T>{
 			dequeue();
 		}
 	}
+	
+	public int getLength(){
+		return back;
+	}
 
 }

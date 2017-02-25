@@ -10,6 +10,7 @@ public class Main {
 	private static MergeSort ms = new MergeSort();
 	private static QuickSort qs = new QuickSort();
 	private static RadixSort rs = new RadixSort();
+	private static InClassSorts in = new InClassSorts();
 	
 	public static void main( String args[] )throws IOException{
 
@@ -56,6 +57,8 @@ public class Main {
 	outFile.println("countCompare recursive: " + rs.getCountCompareR());
 	outFile.println("countMove iterative: " + rs.getCountMoveI());
 	outFile.println("countCompare iterative: " + rs.getCountCompareI());
+	
+	//testInClass();
 
 	outFile.close();
 }
@@ -77,7 +80,7 @@ public class Main {
 	
 	private static void TestSelective(){
 		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 		int[] aI;
 		int[] aR;
 		
@@ -93,7 +96,7 @@ public class Main {
 	
 	private static void TestInsertion(){
 		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 		int[] aR;
 		int[] aI;
 		
@@ -109,7 +112,7 @@ public class Main {
 	
 	private static void TestShell(){
 		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 		int[] aR;
 		int[] aI;
 		
@@ -131,7 +134,7 @@ public class Main {
 	 */
 	private static void TestMerge(){
 //		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 //		int[] aR;
 		int[] aI;
 		
@@ -151,7 +154,7 @@ public class Main {
 	 */
 	private static void TestQuick(){
 //		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 //		int[] aR;
 		int[] aI;
 		
@@ -167,7 +170,7 @@ public class Main {
 	
 	private static void TestRadix(){
 		int sizeR = 10;
-		int sizeI = 10;
+		int sizeI = 1000;
 		int[] aR;
 		int[] aI;
 		
@@ -178,6 +181,31 @@ public class Main {
 		System.out.println("Array after radix iterative sort");
 		DisplayArray(aI);
 		System.out.println("Array after radix recursive sort");
+		DisplayArray(aR);
+	}
+	
+	private static void testInClass(){
+		int sizeR = 10;
+		int sizeI = 10;
+		int[] aR;
+		int[] aI;
+		
+		System.out.println("============In Class=========");
+		aI = MakeArray(sizeI);
+		aR = MakeArray(sizeR);
+		aI = in.ItSelective(aI);
+		aR = in.ReSelective(aR, 0, 1);
+		System.out.println("Array after selective iterative sort");
+		DisplayArray(aI);
+		System.out.println("Array after selective recursive sort");
+		DisplayArray(aR);
+		aI = MakeArray(sizeI);
+		aR = MakeArray(sizeR);
+		aI = in.ItInsertion(aI);
+		in.ReInsertion(aR, sizeR-1);
+		System.out.println("Array after insertion iterative sort");
+		DisplayArray(aI);
+		System.out.println("Array after insertion recursive sort");
 		DisplayArray(aR);
 	}
 	

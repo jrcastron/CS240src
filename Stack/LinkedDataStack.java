@@ -24,6 +24,10 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 		   }
 	}
 	
+	public void pushInClass(T newEntry){
+		topNode = new Node<T>(newEntry, topNode);
+	}
+	
 	/** Detects whether this stack is empty.
     @return  True if the stack is empty. */
 	public boolean isEmpty(){
@@ -53,6 +57,13 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 		return last;
 	}
 	
+	public T popInClass(){
+		T top = peek();
+		assert(topNode != null);
+		topNode = topNode.getNextNode();
+		return top;
+	}
+	
 	/** Retrieves this stack's top entry.
 	    @return  The object at the top of the stack.
 	    @throws  EmptyStackException if the stack is empty. */
@@ -68,6 +79,17 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 		return null;
 	}
 	
+	public int getLength(){
+		int length = 0;
+		Node<T> tmp = topNode;
+		if(!isEmpty()){
+			while(tmp.getNextNode() != null){
+				length++;
+				tmp = tmp.next;
+			}
+		}
+		return length;
+	}
 	
 	/** Removes all entries from this stack. */
 	public void clear(){
