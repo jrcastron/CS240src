@@ -181,11 +181,11 @@ public class LinkedList<T> implements ListInterface<T>{
 		int i = 0;
 		if(!isEmpty()){
 			Node<T> temp = front;
-			while((i<CountEntries()-1)&&(temp.getData()!=Entry)){
+			while((i<CountEntries() - 1)&&(temp.getData()!=Entry)){
 				temp = temp.next;
 				i++;
 			}
-			if(temp.getData() == null){
+			if((temp.getData() == null)||(temp.getData() != Entry)){
 				i = -1;
 			}
 		}

@@ -8,12 +8,15 @@ public class TestList {
 	private static ListVector<Integer> testVector1 = new ListVector<Integer>();
 	private static LinkedList<String> testLinked = new LinkedList<String>();
 	private static LinkedList<Integer> testLinked1 = new LinkedList<Integer>();
+	private static ListArray<String> testArray = new ListArray<String>(10);
+	private static ListArray<Integer> testArray1 = new ListArray<Integer>(10);
 	
 	public static void main(String args[]){
 		
 		Initialize();
 		testVector();
 		testLinked();
+		testArray();
 		
 	}
 	
@@ -26,10 +29,14 @@ public class TestList {
     	testLinked.Add("A");
     	testLinked.Add("B");
     	testLinked.Add("C");
+    	testArray.Add("A");
+    	testArray.Add("B");
+    	testArray.Add("C");
     	
     	for(int i = 0; i < 10; i++){
     		testVector1.Add(r.nextInt(100));
     		testLinked1.Add(r.nextInt(100));
+    		testArray1.Add(r.nextInt(100));
     	}
 	}
 	
@@ -73,6 +80,29 @@ public class TestList {
 		testLinked.LookAtAll();
 		testLinked1.clear();
 		boolean l = testLinked1.isEmpty();
+		
+		System.out.println("is: \n" + a + "\n" + b + "\n" + c + "\n" + d +"\n" 
+		+ e + "\n" + f + "\n" + g + "\n" + h + "\n" + i + "\n" + j + "\n" + l);
+	}
+	
+	public static void testArray(){
+		System.out.println("Test Array: ");
+		testArray.LookAtAll();
+		boolean a = testArray.Add("X", 2);
+		boolean b = testArray1.Add(-5, 2);
+		String c = testArray.LookAtItem("X");
+		int d = testArray1.LookAtItem(-5);
+		String e = testArray.Remove("A");
+		int f = testArray1.Remove(5);
+		testArray1.LookAtAll();
+		testArray.LookAtAll();
+		int g = testArray.FindItem("A");
+		int h = testArray1.CountEntries();
+		String i = testArray.replaceItem("Y", "B");
+		String j = testArray.replaceItem("Y", "C");
+		testArray.LookAtAll();
+		testArray1.clear();
+		boolean l = testArray1.isEmpty();
 		
 		System.out.println("is: \n" + a + "\n" + b + "\n" + c + "\n" + d +"\n" 
 		+ e + "\n" + f + "\n" + g + "\n" + h + "\n" + i + "\n" + j + "\n" + l);

@@ -18,7 +18,7 @@ public interface ListInterface<T> {
 	public boolean Add(T newEntry, int where);
 	
 	/**
-	 * find an item and return it if found
+	 * removes item
 	 * @param where
 	 * @return
 	 */
