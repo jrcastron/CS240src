@@ -1,5 +1,6 @@
 package Queue;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class testQueue {
@@ -16,11 +17,13 @@ public class testQueue {
     public static void main(String args[]) {
     	
     	Initialize();
+    	testIterator();
     	getFront();
     	dequeue();
     	getFront();
     	clear();
     	getFront();
+    	testIterator();
     	
     }
     
@@ -83,5 +86,21 @@ public class testQueue {
     	testDoubleEndedQueue.clear();
     	testDoubleEndedQueue1.clear();
     }
+    
+    public static void testIterator(){
+		System.out.println("=================Iterator test============");
+		Iterator<String> c = testArray.getIterator();
+    	Iterator<Integer> d = testArray1.getIterator();
+    	System.out.print("iterator one: ");
+    	while(d.hasNext()){
+    		System.out.print(d.next() + " ");
+    	}
+    	System.out.println();
+    	System.out.print("iterator two: ");
+    	while(c.hasNext()){
+    		System.out.print(c.next() + " ");
+    	}
+    	System.out.println();
+	}
 
 }

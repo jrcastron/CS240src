@@ -1,5 +1,9 @@
 package Stack;
 
+import java.util.Iterator;
+
+import Iterators.IteratorGeneral;
+
 public final class ArrayStack<T> implements StackInterface<T>{
 	private final T[] Stack;
     private int topIndex;
@@ -82,4 +86,9 @@ public final class ArrayStack<T> implements StackInterface<T>{
 			pop();
 		}
 	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorGeneral<T>(Stack);
+	}
+	
 }

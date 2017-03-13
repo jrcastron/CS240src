@@ -1,5 +1,9 @@
 package Queue;
 
+import java.util.Iterator;
+
+import Iterators.IteratorGeneral;
+
 public class ArrayQueue<T> implements QueueInterface<T>{
 	private final T[] Queue;
     private int back;
@@ -81,6 +85,10 @@ public class ArrayQueue<T> implements QueueInterface<T>{
 	
 	public int getLength(){
 		return back;
+	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorGeneral<T>(Queue);
 	}
 
 }

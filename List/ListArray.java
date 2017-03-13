@@ -1,6 +1,8 @@
 package List;
+import Iterators.IteratorGeneral;
+import java.util.Iterator;
 
-public class ListArray<T> implements ListInterface<T> {
+public class ListArray<T> implements ListInterface<T>{
 
 	private final T[] List;
     private int back;
@@ -195,6 +197,10 @@ public class ListArray<T> implements ListInterface<T> {
 		else{
 			return false;
 		}
+	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorGeneral<T>(List);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package Stack;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class TestStack {
@@ -13,12 +14,13 @@ public class TestStack {
     public static void main(String args[]) {
     	
     	Initialize();
+    	testIterator();
     	Peek();
     	pop();
     	Peek();
     	clear();
     	Peek();
-    	
+    	testIterator();
     }
     
     public static void Initialize(){
@@ -69,5 +71,21 @@ public class TestStack {
     	testVector1.clear();
     	testLinked1.clear();
     }
+    
+    public static void testIterator(){
+		System.out.println("=================Iterator test============");
+		Iterator<String> c = testArray.getIterator();
+    	Iterator<Integer> d = testArray1.getIterator();
+    	System.out.print("iterator one: ");
+    	while(d.hasNext()){
+    		System.out.print(d.next() + " ");
+    	}
+    	System.out.println();
+    	System.out.print("iterator two: ");
+    	while(c.hasNext()){
+    		System.out.print(c.next() + " ");
+    	}
+    	System.out.println();
+	}
 
 }
