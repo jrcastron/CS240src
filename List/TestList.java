@@ -15,9 +15,9 @@ public class TestList {
 	public static void main(String args[]){
 		
 		Initialize();
+		testIterator();
 		testVector();
 		testLinked();
-		testIterator();
 		testArray();
 		testIterator();
 		
@@ -115,14 +115,28 @@ public class TestList {
 		System.out.println("=================Iterator test============");
 		Iterator<String> c = testArray.getIterator();
     	Iterator<Integer> d = testArray1.getIterator();
-    	System.out.print("iterator one: ");
+		Iterator<String> e = testLinked.getIterator();
+    	Iterator<Integer> f = testLinked1.getIterator();
+    	System.out.print("Array iterator one: ");
     	while(d.hasNext()){
     		System.out.print(d.next() + " ");
     	}
     	System.out.println();
-    	System.out.print("iterator two: ");
+    	
+    	System.out.print("Array iterator two: ");
     	while(c.hasNext()){
     		System.out.print(c.next() + " ");
+    	}
+    	System.out.println();
+    	
+    	System.out.print("Linked iterator one: ");
+    	while(e.hasNext()){
+    		System.out.print(e.next() + " ");
+    	}
+    	System.out.println();
+    	System.out.print("Linked iterator two: ");
+    	while(f.hasNext()){
+    		System.out.print(f.next() + " ");
     	}
     	System.out.println();
 	}

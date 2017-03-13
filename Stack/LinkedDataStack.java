@@ -1,5 +1,9 @@
 package Stack;
 
+import java.util.Iterator;
+
+import Iterators.IteratorSingleLinked;
+
 public final class LinkedDataStack<T> implements StackInterface<T>{
     private Node<T> topNode;
     
@@ -96,6 +100,10 @@ public final class LinkedDataStack<T> implements StackInterface<T>{
 		while (!isEmpty()) {
 			pop();
 		}
+	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorSingleLinked<T>(topNode);
 	}
 
 }

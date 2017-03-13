@@ -1,5 +1,8 @@
 package List;
 
+import java.util.Iterator;
+
+import Iterators.IteratorSingleLinked;
 import Stack.Node;
 
 public class LinkedList<T> implements ListInterface<T>{
@@ -238,6 +241,10 @@ public class LinkedList<T> implements ListInterface<T>{
 			return temp;
 		}
 		return null;
+	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorSingleLinked<T>(front);
 	}
 
 }

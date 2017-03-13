@@ -1,5 +1,8 @@
 package Queue;
 
+import java.util.Iterator;
+
+import Iterators.IteratorSingleLinked;
 import Stack.Node;
 
 public class SingleLinkedQueue<T> implements QueueInterface<T>{
@@ -60,6 +63,10 @@ public class SingleLinkedQueue<T> implements QueueInterface<T>{
 		while(!isEmpty()){
 			dequeue();
 		}
+	}
+	
+	public Iterator<T> getIterator(){
+		return new IteratorSingleLinked<T>(front);
 	}
 
 }

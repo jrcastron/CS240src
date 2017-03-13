@@ -1,7 +1,12 @@
 package Iterators;
 
 import java.util.Iterator;
-
+/**
+ * general iterator for array implementations of list, queue, and stack
+ * @author Jessi
+ *
+ * @param <T>
+ */
 public class IteratorGeneral<T> implements Iterator<T>{
 	
 
